@@ -1,2 +1,2 @@
-# acnl-research
+# COMING SOON :: acnl-research
 My research for Animal Crossing: New Leaf.
