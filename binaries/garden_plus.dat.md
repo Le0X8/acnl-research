@@ -1,1 +1,5 @@
-# Research results coming soon here ;)
+# garden_plus.dat
+
+| Offset | Length | Data type | Use case |
+| --- | --- | --- | --- |
+||||
