@@ -13,8 +13,8 @@ All data types are little-endian. Strings are null-terminated and UTF-16LE encod
 | `0x00000` | `0x00080` | [SecureValue](#securevalue)   |             | `securevalue`  |
 | `0x00080` | `0x00020` | [SaveHeader](#saveheader)     |             | `saveheader`   |
 | `0x000a0` | `0x29200` | [Player](#player)[4]          |             | `players[]`    |
-| `0x292a0` |           | [VillagerData](#villagerdata) |             | `villagerData` |
-|           |           | [BuildingData](#buildingdata) |             |                |
+| `0x292a0` | `0x22be0` | [VillagerData](#villagerdata) |             | `villagerData` |
+| `0x4be80` |           | [BuildingData](#buildingdata) |             |                |
 |           |           | [MinigameData](#minigamedata) |             |                |
 |           |           | [UnknownData](#unknowndata)   |             |                |
 |           |           | [TownData](#towndata)         |             |                |
@@ -412,12 +412,15 @@ Used in:
 
 | Size      |
 | --------- |
-| `0x00000` |
+| `0x22be0` |
 
-| Offset    | Size      | Type                      | Description                     | JSON key    |
-| --------- | --------- | ------------------------- | ------------------------------- | ----------- |
-| `0x00000` | `0x00004` | u32                       | CRC-32 of the next 142280 bytes | `crc32`     |
-| `0x00004` | `0x172f0` | [Villager](#villager)[10] | Villagers                       | `villagers` |
+| Offset    | Size      | Type                      | Description                     | JSON key         |
+| --------- | --------- | ------------------------- | ------------------------------- | ---------------- |
+| `0x00000` | `0x00004` | u32                       | CRC-32 of the next 142280 bytes | `crc32`          |
+| `0x00004` | `0x172f0` | [Villager](#villager)[10] | Villagers                       | `villagers`      |
+| `0x172f4` | `0x02478` | u8[9336]                  | ?                               | `unknown0x172f4` |
+| `0x1976c` | `0x09460` | [Villager](#villager)[4]  | ?                               | `unknown0x1976c` |
+| `0x22bcc` | `0x00014` | u8[20]                    | ?                               | `unknown0x22bcc` |
 
 Used in:
 
@@ -429,13 +432,73 @@ Used in:
 | --------- |
 | `0x02518` |
 
-| Offset    | Size      | Type              | Description          | JSON key         |
-| --------- | --------- | ----------------- | -------------------- | ---------------- |
-| `0x00000` | `0x00016` | [TownId](#townid) | ?                    | `unknown0x00000` |
-| `0x00016` | `0x00016` | [TownId](#townid) | ?                    | `unknown0x00016` |
-| `0x0002c` | `0x00002` | u16               | Villager ID          | `id`             |
-| `0x0002e` | `0x00001` | u8                | Villager personality | `personality`    |
+| Offset    | Size      | Type                              | Description          | JSON key         |
+| --------- | --------- | --------------------------------- | -------------------- | ---------------- |
+| `0x00000` | `0x00016` | [TownId](#townid)                 | ?                    | `unknown0x00000` |
+| `0x00016` | `0x00016` | [TownId](#townid)                 | ?                    | `unknown0x00016` |
+| `0x0002c` | `0x00002` | u16                               | Villager ID          | `id`             |
+| `0x0002e` | `0x00001` | u8                                | Villager personality | `personality`    |
+| `0x0002f` | `0x00001` | u8                                | Padding (always 0)   | `padding0x0002f` |
+| `0x00030` | `0x00870` | [Pattern](#pattern)               | Some kind of pattern | `pattern`        |
+| `0x008a0` | `0x00016` | [TownId](#townid)                 | ?                    | `unknown0x008a0` |
+| `0x008b6` | `0x00010` | u8[16]                            | ?                    | `unknown0x008b6` |
+| `0x008c6` | `0x00028` | [Item](#item)[10]                 | ?                    | `unknown0x008c6` |
+| `0x008ee` | `0x00f20` | [VillagerHome](#villagerhome)[16] | Villager homes       | `homes`          |
+| `0x0180e` | `0x00002` | u16                               | Padding (always 0)   | `padding0x0180e` |
+| `0x01810` | `0x00c80` | [Letter](#letter)[5]              | Letters              | `letters`        |
+| `0x02490` | `0x0000a` | u16[5]                            | ?                    | `unknown0x02490` |
+| `0x0249a` | `0x00004` | [Item](#item)                     | Shirt                | `shirt`          |
+| `0x0249e` | `0x00004` | [Item](#item)                     | Song                 | `song`           |
+| `0x024a2` | `0x00004` | [Item](#item)                     | Wallpaper            | `wallpaper`      |
+| `0x024a6` | `0x00004` | [Item](#item)                     | Floor                | `floor`          |
+| `0x024aa` | `0x00004` | [Item](#item)                     | Umbrella             | `umbrella`       |
+| `0x024ae` | `0x00040` | [Item](#item)[16]                 | Furniture            | `furniture`      |
+| `0x024ee` | `0x00004` | [Date](#date)                     | ?                    | `unknown0x024ee` |
+| `0x024f2` | `0x00016` | str                               | Catchphrase          | `catchphrase`    |
+| `0x02508` | `0x00002` | u8[2]                             | ?                    | `unknown0x02508` |
+| `0x0250a` | `0x00004` | [Date](#date)                     | ?                    | `unknown0x0250a` |
+| `0x0250e` | `0x00002` | u8[2]                             | ?                    | `unknown0x0250e` |
+| `0x02510` | `0x00008` | u32[2]                            | ?                    | `unknown0x02510` |
 
 Used in:
 
 - [VillagerData](#villagerdata)
+
+## VillagerHome
+
+| Size      |
+| --------- |
+| `0x000f2` |
+
+| Offset    | Size      | Type                      | Description | JSON key         |
+| --------- | --------- | ------------------------- | ----------- | ---------------- |
+| `0x00000` | `0x0002e` | [PersonalId](#personalid) | ?           | `unknown0x00000` |
+| `0x0002e` | `0x00022` | u8[34]                    | ?           | `unknown0x0002e` |
+| `0x00050` | `0x00012` | str                       | ?           | `unknown0x00050` |
+| `0x00062` | `0x00054` | [Item](#item)[21]         | ?           | `unknown0x00062` |
+| `0x000b6` | `0x0000a` | u8[10]                    | ?           | `unknown0x000b6` |
+| `0x000c0` | `0x00016` | [TownId](#townid)         | ?           | `unknown0x000c0` |
+| `0x000d6` | `0x00008` | u8[8]                     | ?           | `unknown0x000d6` |
+| `0x000de` | `0x00010` | [Date](#date)[4]          | ?           | `unknown0x000de` |
+| `0x000ee` | `0x00003` | u8[3]                     | ?           | `unknown0x000ee` |
+| `0x000f1` | `0x00001` | u8                        | Padding     | `padding0x000f1` |
+
+Used in:
+
+- [Villager](#villager)
+
+## Date
+
+| Size      |
+| --------- |
+| `0x00004` |
+
+| Offset    | Size      | Type | Description | JSON key |
+| --------- | --------- | ---- | ----------- | -------- |
+| `0x00000` | `0x00002` | u16  | Year        | `year`   |
+| `0x00002` | `0x00001` | u8   | Month       | `month`  |
+| `0x00003` | `0x00001` | u8   | Day         | `day`    |
+
+Used in:
+
+- [VillagerHome](#villagerhome)
