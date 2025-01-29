@@ -128,3 +128,79 @@ Debugging objects
 ## FgData
 
 ?
+
+## FgDataPresen
+
+?
+
+## FgDataTour
+
+?
+
+## FgDataTrial
+
+?
+
+## Fish
+
+- fsh_*.bcres: fishes
+- msp_*.bcres: sea creatures, a frog, a lotus and pottery??? what the hell
+- sdw_*.bcres: fish shadows
+- sea_*.bcres: sea creatures
+- SealifeMuseumInfo.bin: the name speaks for itself
+
+## Font
+
+- *.bcfnt: font files used in the game
+
+## Ftr
+
+### Ftr/Common
+
+?
+
+### Ftr/Common_mdl
+
+- Bromide_mdl.bcres: photo frame model
+- Catalog_Carpet.bcres: floor display model
+- Catalog_Letter.bcres: paper display model
+- Catalog_Wall.bcres: wall display model
+- HouseParts_door_a.bcres: Nook's Homes rounded door model
+- HouseParts_door_b.bcres: Nook's Homes rectangular door model
+- HouseParts_mat.bcres: Nook's Homes pavement model
+- HouseParts_roof.bcres: Nook's Homes roof model
+- HouseParts_wall.bcres:  Nook's Homes brick model
+- MusicJacket_floor_mdl.bcres: Music disc floor model
+- MusicJacket_wall_mdl.bcres: Music disc wall model
+
+### Ftr/Mannequin
+
+item display mannequins
+
+### Ftr/MyDesignEdit
+
+?
+
+### Ftr/Remake
+
+#### Ftr/Remake/Param
+
+?
+
+#### Ftr/Remake/Texture
+
+Cyrus item textures
+
+### Ftr/TotalMannequin
+
+?
+
+### Ftr/TV
+
+TV program
+
+## GameIcon
+
+?
+
+## 
