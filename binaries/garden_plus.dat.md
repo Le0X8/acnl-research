@@ -15,9 +15,9 @@ All data types are little-endian. Strings are null-terminated and UTF-16LE encod
 | `0x000a0` | `0x29200` | [Player](#player)[4]          |             | `players[]`    |
 | `0x292a0` | `0x22be0` | [VillagerData](#villagerdata) |             | `villagerData` |
 | `0x4be80` | `0x044bc` | [BuildingData](#buildingdata) |             | `buildingData` |
-|           |           | [MinigameData](#minigamedata) |             |                |
-|           |           | [UnknownData](#unknowndata)   |             |                |
-|           |           | [TownData](#towndata)         |             |                |
+| `0x5033c` | `0x028f4` | [MinigameData](#minigamedata) |             | `minigameData` |
+| `0x52c30` | `0x007f4` | [UnknownData](#unknowndata)   |             | `unknownData`  |
+| `0x53424` | `0x366dc` | [TownData](#towndata)         |             | `townData`     |
 
 ## SecureValue
 
@@ -547,3 +547,25 @@ Used in:
 | `0x00871` | `0x00003` | u8[3]               | Unknown     | `unknown1` |
 | `0x00874` | `0x00001` | u8                  | Y position  | `y`        |
 | `0x00875` | `0x00003` | u8[3]               | Unknown     | `unknown2` |
+
+## MinigameData
+
+| Size      |
+| --------- |
+| `0x028f4` |
+
+| Offset    | Size      | Type      | Description                       | JSON key      |
+| --------- | --------- | --------- | --------------------------------- | ------------- |
+| `0x00000` | `0x00004` | u32       | Checksum of the next 0x28f0 bytes | `checksum`    |
+| `0x00004` | `0x028f0` | u8[10480] | ?                                 | `unknownData` |
+
+## UnknownData
+
+| Size      |
+| --------- |
+| `0x007f4` |
+
+| Offset    | Size      | Type     | Description                      | JSON key      |
+| --------- | --------- | -------- | -------------------------------- | ------------- |
+| `0x00000` | `0x00004` | u32      | Checksum of the next 0x7f0 bytes | `checksum`    |
+| `0x00004` | `0x007f0` | u8[2032] | ?                                | `unknownData` |
