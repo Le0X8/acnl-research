@@ -14,7 +14,7 @@ All data types are little-endian. Strings are null-terminated and UTF-16LE encod
 | `0x00080` | `0x00020` | [SaveHeader](#saveheader)     |             | `saveheader`   |
 | `0x000a0` | `0x29200` | [Player](#player)[4]          |             | `players[]`    |
 | `0x292a0` | `0x22be0` | [VillagerData](#villagerdata) |             | `villagerData` |
-| `0x4be80` |           | [BuildingData](#buildingdata) |             |                |
+| `0x4be80` | `0x044bc` | [BuildingData](#buildingdata) |             | `buildingData` |
 |           |           | [MinigameData](#minigamedata) |             |                |
 |           |           | [UnknownData](#unknowndata)   |             |                |
 |           |           | [TownData](#towndata)         |             |                |
@@ -502,3 +502,48 @@ Used in:
 Used in:
 
 - [VillagerHome](#villagerhome)
+
+## BuildingData
+
+| Size      |
+| --------- |
+| `0x044bc` |
+
+| Offset    | Size      | Type                           | Description                       | JSON key           |
+| --------- | --------- | ------------------------------ | --------------------------------- | ------------------ |
+| `0x00000` | `0x00004` | u32                            | Checksum of the next 0x44b8 bytes | `checksum`         |
+| `0x00004` | `0x00001` | u8                             | Amount of normal PWPs             | `normalPWPsAmount` |
+| `0x00005` | `0x00001` | u8                             | mount of event PWPs               | `eventPWPsAmount`  |
+| `0x00006` | `0x00001` | u8                             | Town tree size (1-7)              | `townTreeSize`     |
+| `0x00007` | `0x00001` | u8                             | Padding (always 0)                | `padding1`         |
+| `0x00008` | `0x000e0` | [Building](#building)[56]      | Town buildings                    | `buildings`        |
+| `0x000e8` | `0x00008` | [Building](#building)[2]       | Event buildings                   | `eventBuildings`   |
+| `0x000f0` | `0x03b48` | [DesignStand](#designstand)[7] | Design stand related data         | `designStands`     |
+| `0x03c38` | `0x00870` | [Pattern](#pattern)            | Unknown pattern                   | `unknownPattern1`  |
+| `0x044a8` | `0x00014` | u8[20]                         | Unlocked PWPs (bitmap)            | `unlockedPWPs`     |
+
+## Building
+
+| Size      |
+| --------- |
+| `0x00004` |
+
+| Offset    | Size      | Type | Description | JSON key |
+| --------- | --------- | ---- | ----------- | -------- |
+| `0x00000` | `0x00002` | u16  | Building ID | `id`     |
+| `0x00002` | `0x00001` | u8   | X position  | `x`      |
+| `0x00003` | `0x00001` | u8   | Y position  | `y`      |
+
+## DesignStand
+
+| Size      |
+| --------- |
+| `0x00878` |
+
+| Offset    | Size      | Type                | Description | JSON key   |
+| --------- | --------- | ------------------- | ----------- | ---------- |
+| `0x00000` | `0x00870` | [Pattern](#pattern) | Design      | `design`   |
+| `0x00870` | `0x00001` | u8                  | X position  | `x`        |
+| `0x00871` | `0x00003` | u8[3]               | Unknown     | `unknown1` |
+| `0x00874` | `0x00001` | u8                  | Y position  | `y`        |
+| `0x00875` | `0x00003` | u8[3]               | Unknown     | `unknown2` |
