@@ -576,53 +576,218 @@ Used in:
 | --------- |
 | `0x366dc` |
 
-| Offset    | Size      | Type                   | Description                                       | JSON key               |
-| --------- | --------- | ---------------------- | ------------------------------------------------- | ---------------------- |
-| `0x00000` | `0x00004` | u32                    | Checksum of the next 0x1e4d8 bytes                | `checksum`             |
-| `0x00004` | `0x00058` | u8[88]                 | Unknown data                                      | `unknown1`             |
-| `0x0005c` | `0x00001` | u8                     | Ocean side (0: left, 1: right)                    | `oceanSide`            |
-| `0x0005d` | `0x00001` | u8                     | Grass type (0-2)                                  | `grassType`            |
-| `0x0005e` | `0x00001` | u8                     | Cliff type (0-2)                                  | `cliffType`            |
-| `0x0005f` | `0x00001` | u8                     | Padding (always 0)                                | `padding1`             |
-| `0x00060` | `0x00054` | u16[42]                | Town acres (7 columns, 6 rows)                    | `townAcres`            |
-| `0x000b4` | `0x05000` | [Item](#item)[5120]    | Town items (16x16 items per acre, 5x4 acres)      | `townItems`            |
-| `0x050b4` | `0x01400` | u8[5120]               | Map grass today (16x16 slots per acre, 5x4 acres) | `mapGrassToday`        |
-| `0x064b4` | `0x00028` | u8[40]                 | ?                                                 | `unknown2`             |
-| `0x064dc` | `0x03000` | u8[12288]              | Map grass (16x16 slots per acre, 8x6 acres)       | `mapGrass`             |
-| `0x094dc` | `0x058b0` | u8[22704]              | ?                                                 | `unknown3`             |
-| `0x0ed8c` | `0x00008` | i64                    | Playtime                                          | `playtime`             |
-| `0x0ed94` | `0x00016` | [TownId](#townid)      | Town ID                                           | `townId`               |
-| `0x0edaa` | `0x00001` | u8                     | Unknown data                                      | `unknown4`             |
-| `0x0edab` | `0x00013` | u8[19]                 | Town flags (bitmap)                               | `townFlags`            |
-| `0x0edbe` | `0x00040` | [Item](#item)[16]      | Lost and found items                              | `lostAndFound`         |
-| `0x0edfe` | `0x00010` | u8[16]                 | Unknown data                                      | `unknown5`             |
-| `0x0ee0e` | `0x00008` | u64                    | Unknown data                                      | `unknown6`             |
-| `0x0ee16` | `0x00004` | [Item](#item)          | Town fruit                                        | `townFruit`            |
-| `0x0ee1a` | `0x00002` | u16                    | Days played                                       | `daysPlayed`           |
-| `0x0ee1c` | `0x00030` | u8[48]                 | Unknown data                                      | `unknown7`             |
-| `0x0ee4c` | `0x00060` | [Item](#item)[24]      | Nooklings items                                   | `nooklingsItems`       |
-| `0x0eeac` | `0x0001c` | u8[28]                 | Unknown data                                      | `unknown8`             |
-| `0x0eec8` | `0x00014` | [Item](#item)[5]       | Ables items                                       | `ablesItems`           |
-| `0x0eedc` | `0x00020` | [Item](#item)[8]       | Ables pattern items                               | `ablesPatternItems`    |
-| `0x0eefc` | `0x00018` | u8[24]                 | Unknown data                                      | `unknown9`             |
-| `0x0ef14` | `0x04380` | [Pattern](#pattern)[8] | Ables display patterns                            | `ablesDisplayPatterns` |
-| `0x13294` | `0x0001c` | [Item](#item)[7]       | Labelles items                                    | `labellesItems`        |
-| `0x132b0` | `0x00022` | u8[34]                 | Unknown data                                      | `unknown10`            |
-| `0x132d2` | `0x00044` | [Item](#item)[11]      | Leifs items                                       | `leifsItems`           |
-| `0x13316` | `0x0000e` | u8[14]                 | Unknown data                                      | `unknown11`            |
-| `0x13324` | `0x00010` | [Item](#item)[4]       | Redds items                                       | `reddsItems`           |
-| `0x13334` | `0x000d6` | u8[214]                | Unknown data                                      | `unknown12`            |
-| `0x1340a` | `0x00018` | [Item](#item)[6]       | Kicks items                                       | `kicksItems`           |
-| `0x13422` | `0x04478` | u8[17528]              | Unknown data                                      | `unknown13`            |
-| `0x1789a` | `0x0000c` | [Item](#item)[3]       | Museum shop items                                 | `museumShopItems`      |
-| `0x178a6` | `0x00004` | u8[4]                  | Unknown data                                      | `unknown14`            |
-| `0x178aa` | `0x00020` | [Item](#item)[8]       | Nook's Homes items                                | `nooksHomesItems`      |
-| `0x178ca` | `0x0000a` | u8[10]                 | Unknown data                                      | `unknown15`            |
-| `0x178d4` | `0x00048` | [Item](#item)[18]      | Gracie's Grace items                              | `graciesItems`         |
-| `0x1791c` | `0x00052` | u8[82]                 | Unknown data                                      | `unknown16`            |
-| `0x1796e` | `0x00010` | [Item](#item)[4]       | Club LOL gyroids                                  | `clubLolGyroids`       |
-| `0x1797e` | `0x00016` | u8[22]                 | Unknown data                                      | `unknown17`            |
-| `0x17994` | `0x00010` | [Item](#item)[4]       | Island shop items                                 | `islandShopItems`      |
-| `0x179a4` | `0x006b0` | u8[1712]               | Unknown data                                      | `unknown18`            |
-| `0x18054` | `0x02e60` | u8[11872]              | Museum exhibit rooms                              | `museumExhibitRooms`   |
-| `0x1aeb4` | `0x1b828` | u8[112680]             | Unknown data                                      | `unknown19`            |
+| Offset    | Size      | Type                                  | Description                                       | JSON key               |
+| --------- | --------- | ------------------------------------- | ------------------------------------------------- | ---------------------- |
+| `0x00000` | `0x00004` | u32                                   | Checksum of the next 0x1e4d8 bytes                | `checksum`             |
+| `0x00004` | `0x00058` | u8[88]                                | Unknown data                                      | `unknown1`             |
+| `0x0005c` | `0x00001` | u8                                    | Ocean side (0: left, 1: right)                    | `oceanSide`            |
+| `0x0005d` | `0x00001` | u8                                    | Grass type (0-2)                                  | `grassType`            |
+| `0x0005e` | `0x00001` | u8                                    | Cliff type (0-2)                                  | `cliffType`            |
+| `0x0005f` | `0x00001` | u8                                    | Padding (always 0)                                | `padding1`             |
+| `0x00060` | `0x00054` | u16[42]                               | Town acres (7 columns, 6 rows)                    | `townAcres`            |
+| `0x000b4` | `0x05000` | [Item](#item)[5120]                   | Town items (16x16 items per acre, 5x4 acres)      | `townItems`            |
+| `0x050b4` | `0x01400` | u8[5120]                              | Map grass today (16x16 slots per acre, 5x4 acres) | `mapGrassToday`        |
+| `0x064b4` | `0x00028` | u8[40]                                | ?                                                 | `unknown2`             |
+| `0x064dc` | `0x03000` | u8[12288]                             | Map grass (16x16 slots per acre, 8x6 acres)       | `mapGrass`             |
+| `0x094dc` | `0x058b0` | u8[22704]                             | ?                                                 | `unknown3`             |
+| `0x0ed8c` | `0x00008` | i64                                   | Playtime                                          | `playtime`             |
+| `0x0ed94` | `0x00016` | [TownId](#townid)                     | Town ID                                           | `townId`               |
+| `0x0edaa` | `0x00001` | u8                                    | Unknown data                                      | `unknown4`             |
+| `0x0edab` | `0x00013` | [TownFlags](#townflags)               | Town flags                                        | `townFlags`            |
+| `0x0edbe` | `0x00040` | [Item](#item)[16]                     | Lost and found items                              | `lostAndFound`         |
+| `0x0edfe` | `0x00010` | u8[16]                                | Unknown data                                      | `unknown5`             |
+| `0x0ee0e` | `0x00008` | u64                                   | Unknown data                                      | `unknown6`             |
+| `0x0ee16` | `0x00004` | [Item](#item)                         | Town fruit                                        | `townFruit`            |
+| `0x0ee1a` | `0x00002` | u16                                   | Days played                                       | `daysPlayed`           |
+| `0x0ee1c` | `0x00030` | u8[48]                                | Unknown data                                      | `unknown7`             |
+| `0x0ee4c` | `0x00060` | [Item](#item)[24]                     | Nooklings items                                   | `nooklingsItems`       |
+| `0x0eeac` | `0x0001c` | u8[28]                                | Unknown data                                      | `unknown8`             |
+| `0x0eec8` | `0x00014` | [Item](#item)[5]                      | Ables items                                       | `ablesItems`           |
+| `0x0eedc` | `0x00020` | [Item](#item)[8]                      | Ables pattern items                               | `ablesPatternItems`    |
+| `0x0eefc` | `0x00018` | u8[24]                                | Unknown data                                      | `unknown9`             |
+| `0x0ef14` | `0x04380` | [Pattern](#pattern)[8]                | Ables display patterns                            | `ablesDisplayPatterns` |
+| `0x13294` | `0x0001c` | [Item](#item)[7]                      | Labelles items                                    | `labellesItems`        |
+| `0x132b0` | `0x00022` | u8[34]                                | Unknown data                                      | `unknown10`            |
+| `0x132d2` | `0x00044` | [Item](#item)[11]                     | Leifs items                                       | `leifsItems`           |
+| `0x13316` | `0x0000e` | u8[14]                                | Unknown data                                      | `unknown11`            |
+| `0x13324` | `0x00010` | [Item](#item)[4]                      | Redds items                                       | `reddsItems`           |
+| `0x13334` | `0x000d6` | u8[214]                               | Unknown data                                      | `unknown12`            |
+| `0x1340a` | `0x00018` | [Item](#item)[6]                      | Kicks items                                       | `kicksItems`           |
+| `0x13422` | `0x04478` | u8[17528]                             | Unknown data                                      | `unknown13`            |
+| `0x1789a` | `0x0000c` | [Item](#item)[3]                      | Museum shop items                                 | `museumShopItems`      |
+| `0x178a6` | `0x00004` | u8[4]                                 | Unknown data                                      | `unknown14`            |
+| `0x178aa` | `0x00020` | [Item](#item)[8]                      | Nook's Homes items                                | `nooksHomesItems`      |
+| `0x178ca` | `0x0000a` | u8[10]                                | Unknown data                                      | `unknown15`            |
+| `0x178d4` | `0x00048` | [Item](#item)[18]                     | Gracie's Grace items                              | `graciesItems`         |
+| `0x1791c` | `0x00052` | u8[82]                                | Unknown data                                      | `unknown16`            |
+| `0x1796e` | `0x00010` | [Item](#item)[4]                      | Club LOL gyroids                                  | `clubLolGyroids`       |
+| `0x1797e` | `0x00016` | u8[22]                                | Unknown data                                      | `unknown17`            |
+| `0x17994` | `0x00010` | [Item](#item)[4]                      | Island shop items                                 | `islandShopItems`      |
+| `0x179a4` | `0x00018` | u8[24]                                | Unknown data                                      | `unknown18`            |
+| `0x179bc` | `0x00070` | [EncryptedValue](#encryptedvalue)[14] | Turnip prices (Mo-Su, AM & PM)                    | `turnipPrices`         |
+| `0x17a2c` | `0x00628` | u8[1576]                              | Unknown data                                      | `unknown19`            |
+| `0x18054` | `0x02e60` | u8[11872]                             | Museum exhibit rooms                              | `museumExhibitRooms`   |
+| `0x1aeb4` | `0x1b828` | u8[112680]                            | Unknown data                                      | `unknown19`            |
+
+## TownFlags
+
+| Size      |
+| --------- |
+| `0x00013` |
+
+_This is a bitmap._
+
+| Bit   | Description              | JSON key                 |
+| ----- | ------------------------ | ------------------------ |
+| `0`   | ?                        | `flag0`                  |
+| `1`   | Early Bird ordinance     | `earlyBirdOrdinance`     |
+| `2`   | Night Owl ordinance      | `nightOwlOrdinance`      |
+| `3`   | Bell Boom ordinance      | `bellBoomOrdinance`      |
+| `4`   | Beautiful Town ordinance | `beautifulTownOrdinance` |
+| `5`   | ?                        | `flag5`                  |
+| `6`   | ?                        | `flag6`                  |
+| `7`   | ?                        | `flag7`                  |
+| `8`   | ?                        | `flag8`                  |
+| `9`   | ?                        | `flag9`                  |
+| `10`  | ?                        | `flag10`                 |
+| `11`  | ?                        | `flag11`                 |
+| `12`  | ?                        | `flag12`                 |
+| `13`  | ?                        | `flag13`                 |
+| `14`  | ?                        | `flag14`                 |
+| `15`  | ?                        | `flag15`                 |
+| `16`  | ?                        | `flag16`                 |
+| `17`  | ?                        | `flag17`                 |
+| `18`  | ?                        | `flag18`                 |
+| `19`  | ?                        | `flag19`                 |
+| `20`  | ?                        | `flag20`                 |
+| `21`  | ?                        | `flag21`                 |
+| `22`  | ?                        | `flag22`                 |
+| `23`  | ?                        | `flag23`                 |
+| `24`  | ?                        | `flag24`                 |
+| `25`  | ?                        | `flag25`                 |
+| `26`  | ?                        | `flag26`                 |
+| `27`  | ?                        | `flag27`                 |
+| `28`  | ?                        | `flag28`                 |
+| `29`  | ?                        | `flag29`                 |
+| `30`  | ?                        | `flag30`                 |
+| `31`  | ?                        | `flag31`                 |
+| `32`  | ?                        | `flag32`                 |
+| `33`  | ?                        | `flag33`                 |
+| `34`  | ?                        | `flag34`                 |
+| `35`  | ?                        | `flag35`                 |
+| `36`  | ?                        | `flag36`                 |
+| `37`  | ?                        | `flag37`                 |
+| `38`  | ?                        | `flag38`                 |
+| `39`  | ?                        | `flag39`                 |
+| `40`  | ?                        | `flag40`                 |
+| `41`  | ?                        | `flag41`                 |
+| `42`  | ?                        | `flag42`                 |
+| `43`  | ?                        | `flag43`                 |
+| `44`  | ?                        | `flag44`                 |
+| `45`  | ?                        | `flag45`                 |
+| `46`  | ?                        | `flag46`                 |
+| `47`  | ?                        | `flag47`                 |
+| `48`  | ?                        | `flag48`                 |
+| `49`  | ?                        | `flag49`                 |
+| `50`  | ?                        | `flag50`                 |
+| `51`  | ?                        | `flag51`                 |
+| `52`  | ?                        | `flag52`                 |
+| `53`  | ?                        | `flag53`                 |
+| `54`  | ?                        | `flag54`                 |
+| `55`  | ?                        | `flag55`                 |
+| `56`  | ?                        | `flag56`                 |
+| `57`  | ?                        | `flag57`                 |
+| `58`  | ?                        | `flag58`                 |
+| `59`  | ?                        | `flag59`                 |
+| `60`  | ?                        | `flag60`                 |
+| `61`  | ?                        | `flag61`                 |
+| `62`  | ?                        | `flag62`                 |
+| `63`  | ?                        | `flag63`                 |
+| `64`  | ?                        | `flag64`                 |
+| `65`  | ?                        | `flag65`                 |
+| `66`  | ?                        | `flag66`                 |
+| `67`  | ?                        | `flag67`                 |
+| `68`  | ?                        | `flag68`                 |
+| `69`  | ?                        | `flag69`                 |
+| `70`  | ?                        | `flag70`                 |
+| `71`  | ?                        | `flag71`                 |
+| `72`  | ?                        | `flag72`                 |
+| `73`  | ?                        | `flag73`                 |
+| `74`  | ?                        | `flag74`                 |
+| `75`  | ?                        | `flag75`                 |
+| `76`  | ?                        | `flag76`                 |
+| `77`  | ?                        | `flag77`                 |
+| `78`  | ?                        | `flag78`                 |
+| `79`  | ?                        | `flag79`                 |
+| `80`  | ?                        | `flag80`                 |
+| `81`  | ?                        | `flag81`                 |
+| `82`  | ?                        | `flag82`                 |
+| `83`  | ?                        | `flag83`                 |
+| `84`  | ?                        | `flag84`                 |
+| `85`  | ?                        | `flag85`                 |
+| `86`  | ?                        | `flag86`                 |
+| `87`  | ?                        | `flag87`                 |
+| `88`  | ?                        | `flag88`                 |
+| `89`  | ?                        | `flag89`                 |
+| `90`  | ?                        | `flag90`                 |
+| `91`  | ?                        | `flag91`                 |
+| `92`  | ?                        | `flag92`                 |
+| `93`  | ?                        | `flag93`                 |
+| `94`  | ?                        | `flag94`                 |
+| `95`  | ?                        | `flag95`                 |
+| `96`  | ?                        | `flag96`                 |
+| `97`  | ?                        | `flag97`                 |
+| `98`  | ?                        | `flag98`                 |
+| `99`  | ?                        | `flag99`                 |
+| `100` | ?                        | `flag100`                |
+| `101` | ?                        | `flag101`                |
+| `102` | ?                        | `flag102`                |
+| `103` | ?                        | `flag103`                |
+| `104` | ?                        | `flag104`                |
+| `105` | ?                        | `flag105`                |
+| `106` | ?                        | `flag106`                |
+| `107` | ?                        | `flag107`                |
+| `108` | ?                        | `flag108`                |
+| `109` | ?                        | `flag109`                |
+| `110` | ?                        | `flag110`                |
+| `111` | ?                        | `flag111`                |
+| `112` | ?                        | `flag112`                |
+| `113` | ?                        | `flag113`                |
+| `114` | ?                        | `flag114`                |
+| `115` | ?                        | `flag115`                |
+| `116` | ?                        | `flag116`                |
+| `117` | ?                        | `flag117`                |
+| `118` | ?                        | `flag118`                |
+| `119` | ?                        | `flag119`                |
+| `120` | ?                        | `flag120`                |
+| `121` | ?                        | `flag121`                |
+| `122` | ?                        | `flag122`                |
+| `123` | ?                        | `flag123`                |
+| `124` | ?                        | `flag124`                |
+| `125` | ?                        | `flag125`                |
+| `126` | ?                        | `flag126`                |
+| `127` | ?                        | `flag127`                |
+| `128` | ?                        | `flag128`                |
+| `129` | ?                        | `flag129`                |
+| `130` | ?                        | `flag130`                |
+| `131` | ?                        | `flag131`                |
+| `132` | ?                        | `flag132`                |
+| `133` | ?                        | `flag133`                |
+| `134` | ?                        | `flag134`                |
+| `135` | ?                        | `flag135`                |
+| `136` | ?                        | `flag136`                |
+| `137` | ?                        | `flag137`                |
+| `138` | ?                        | `flag138`                |
+| `139` | ?                        | `flag139`                |
+| `140` | ?                        | `flag140`                |
+| `141` | ?                        | `flag141`                |
+| `142` | ?                        | `flag142`                |
+| `143` | ?                        | `flag143`                |
+| `144` | ?                        | `flag144`                |
+| `145` | ?                        | `flag145`                |
+| `146` | ?                        | `flag146`                |
+| `147` | ?                        | `flag147`                |
+| `148` | ?                        | `flag148`                |
+| `149` | ?                        | `flag149`                |
+| `150` | ?                        | `flag150`                |
+| `151` | ?                        | `flag151`                |
